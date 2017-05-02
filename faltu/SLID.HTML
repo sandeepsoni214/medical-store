@@ -1,0 +1,114 @@
+<script src="ajax.js">
+</script>
+<script src="libs/jquery-1.4.2.min.js">
+</script>
+<script>
+/*$(document).ready(function() {
+var spacing = 140;
+$('#featured-books').css({
+'width': spacing * 3,
+'height': '166px',
+'overflow': 'hidden'
+}).find('.covers a').css({
+'float': 'none',
+'position': 'absolute',
+'left': 1000
+});
+var $covers = $('#featured-books .covers a');
+$covers.eq(0).css('left', 0);
+$covers.eq(1).css('left', spacing);
+$covers.eq(2).css('left', spacing * 2);
+});
+*/
+
+</script>
+<script>
+var setUpCovers = function() {
+var $covers = $('#featured-books .covers a');
+$covers.unbind('click');
+// Left image; scroll right (to view images on left) when clicked.
+$covers.eq(0).css('left', 0).click(function(event) {
+$covers.eq(0).animate({'left': spacing}, 'fast');
+$covers.eq(1).animate({'left': spacing * 2}, 'fast');
+$covers.eq(2).animate({'left': spacing * 3}, 'fast');
+$covers.eq($covers.length - 1).css('left', -spacing).animate({'left': 0}, 'fast', function() {
+$(this).prependTo('#featured-books .covers');
+setUpCovers();
+});
+event.preventDefault();
+});
+// Right image; scroll left (to view images on right) when clicked.
+$covers.eq(2).css('left', spacing * 2).click(function(event) {
+
+
+$covers.eq(0).animate({'left': -spacing}, 'fast', function() {
+$(this).appendTo('#featured-books .covers');
+setUpCovers();
+});
+$covers.eq(1).animate({'left': 0}, 'fast');
+$covers.eq(2).animate({'left': spacing}, 'fast');
+$covers.eq(3).css('left', spacing * 3).animate({
+'left': spacing * 2}, 'fast');
+event.preventDefault();
+});
+// Center image.
+$covers.eq(1).css('left', spacing);
+};
+</script>
+<style>
+
+#featured-books {
+position: relative;
+background: #ddd;
+width: 540px;
+height: 186px;
+overflow: scroll;
+margin: 1em auto;
+padding: 0;
+text-align: center;
+z-index: 2;
+}
+#featured-books .covers {
+position: relative;
+width: 940px;
+z-index: 1;
+}
+#featured-books a {
+float: left;
+margin: 10px;
+height: 146px;
+}
+#featured-books .price {
+display: none;
+}
+
+</style>
+<div id="featured-books">
+<div class="covers">
+<a href="covers/large/1847190871.jpg"title="Community Server Quickly">
+<img src="covers/medium/img1.png" width="120" height="148"alt="Community Server Quickly" />
+<span class="price">$35.99</span>
+</a>
+<a href="covers/large/img2.jpg"title="Deep Inside osCommerce: The Cookbook">
+
+<img src="covers/medium/img2.jpg" width="120" height="148"alt="Deep Inside osCommerce: The Cookbook" />
+<span class="price">$44.99</span>
+</a>
+<a href="covers/large/1847190979.jpg" title="Learn OpenOffice.orgSpreadsheet Macro Programming: OOoBasic and Calc automation">
+<img src="covers/medium/img3.png" width="120" height="148"alt="Learn OpenOffice.org Spreadsheet Macro Programming:OOoBasic and Calc automation" />
+<span class="price">$35.99</span>
+</a>
+<a href="covers/large/1847190987.jpg" title="Microsoft AJAX C#Essentials: Building Responsive ASP.NET 2.0 Applications">
+<img src="covers/medium/img4.jpg" width="120" height="148"alt="Microsoft AJAX C# Essentials: Building ResponsiveASP.NET 2.0 Applications" />
+<span class="price">$31.99</span>
+</a>
+<a href="covers/large/1847191002.jpg"title="Google Web Toolkit GWT Java AJAX Programming">
+<img src="covers/medium/img5.png" width="120" height="148"alt="Google Web Toolkit GWT Java AJAX Programming" />
+<span class="price">$40.49</span>
+</a>
+<a href="covers/large/1847192386.jpg"title="Building Websites with Joomla! 1.5 Beta 1">
+<img src="covers/medium/img6.png" width="120" height="148"alt="Building Websites with Joomla! 1.5 Beta 1" />
+<span class="price">$40.49</span>
+</a>
+</div>
+</div>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery UI Effects - addClass demo</title>
+	<link rel="stylesheet" href="themes/base/jquery.ui.all.css">
+	<script src="jquery-1.9.1.js"></script>
+	<script src="ui/jquery.ui.effect.js"></script>
+	<link rel="stylesheet" href="demos.css">
+	<style>
+		.toggler { width: 1000px; height: 200px; border:1px solid red;}
+		#button { padding: .5em 1em; text-decoration: none; }
+		#effect {position:absolute;top:20px; width:100px; background:url(images/1_menu.jpg) no-repeat;}
+		#effect1 {width:100px; background:url(images/1_menu.jpg) no-repeat; }
+		#effect2 { width:100px;background:url(images/1_menu.jpg) no-repeat;}
+		.newClass { margin-left:610px;box-shadow:0px 5px 5px #000  }
+		
+			.newClass1 { margin-right:610px;box-shadow:0px 5px 5px #000  }
+				/*.newClass2 { text-indent: 40px; letter-spacing: .4em; width: 410px; height: 100px; padding: 30px; margin-left:400px; font-size: 1.6em; }*/
+	</style>
+	<script>
+	$(function() {
+		//$( "#button" ).click(function() {
+			$( "#effect" ).addClass( "newClass", 1000/*, callback */);
+			$( "#effect1" ).addClass( "newClass1", 1000/*, callback */);
+			
+			return false;
+		//});
+
+		/*function callback() {
+			setTimeout(function() {
+				$( "#effect" ).removeClass( "newClass" );
+			}, 1500 );
+		}*/
+	});
+	</script>
+</head>
+<body>
+<center>
+<div id="" style="width:1200px; border:1px groove gray;height:700px;padding:10px;">
+<div class="toggler">
+	<div id="effect" class="ui-corner-all">
+		op
+	</div>
+	<div id="effect1" class="ui-corner-all">
+			kj
+	</div>
+	<div id="effect2" class="ui-corner-all">
+	ji		
+	</div>
+</div>
+</div>
+</center>
+
+<a href="#" id="button" class="ui-state-default ui-corner-all">Run Effect</a>
+
+<div class="demo-description">
+<p>This demo adds a class which animates: text-indent, letter-spacing, width, height, padding, margin, and font-size.</p>
+</div>
+</body>
+</html>

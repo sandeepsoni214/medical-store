@@ -1,0 +1,191 @@
+<style>
+.odd
+{
+background:url("photo/treven.png");;
+color:white;
+font-size:18px;
+height:70px;
+}
+.even
+{
+background:url("photo/trodd.png");
+color:white;
+font-size:18px;
+height:70px;
+}
+</style>
+
+
+<script src="libs/jquery-1.4.2.min.js">
+</script>
+
+<script src="script/trtd.js">
+</script>
+<script>
+$(document).ready(function() {
+
+var stripe = function() {
+$('#cart tbody tr:visible:even').removeClass('odd')
+.addClass('even');
+$('#cart tbody tr:visible:odd').removeClass('even')
+.addClass('odd');
+};
+stripe();
+$('#recalculate').hide();
+$('.quantity input').keypress(function(event) {
+if (event.charCode && (event.charCode < 48 ||
+event.charCode > 57)) {
+event.preventDefault();
+}
+}).change(function() {
+var totalQuantity = 0;
+var totalCost = 0;
+$('#cart tbody tr').each(function() {
+var price = parseFloat($('.price', this).text()
+.replace(/^[^\d.]*/, ''));
+price = isNaN(price) ? 0 : price;
+var quantity = parseInt($('.quantity input', this).val());
+var cost = quantity * price;
+$('.cost', this).text('$' + cost.toFixed(2));
+totalQuantity += quantity;
+totalCost += cost;
+});
+$('.subtotal .cost').text('$' + totalCost.toFixed(2));
+var taxRate = parseFloat($('.tax .price').text()) / 100;
+var tax = Math.ceil(totalCost * taxRate * 100) / 100;
+$('.tax .cost').text('$' + tax.toFixed(2));
+Forms with Function
+[ 250 ]
+totalCost += tax;
+$('.shipping .quantity').text(String(totalQuantity));
+var shippingRate = parseFloat($('.shipping .price').text()
+.replace(/^[^\d.]*/, ''));
+var shipping = totalQuantity * shippingRate;
+$('.shipping .cost').text('$' + shipping.toFixed(2));
+totalCost += shipping;
+$('.total .cost').text('$' + totalCost.toFixed(2));
+});
+$('<th>&nbsp;</th>').insertAfter('#cart thead th:nth-child(2)');
+$('#cart tbody tr').each(function() {
+$deleteButton = $('<img />').attr({
+'width': '16',
+'height': '16',
+'src': '../icons/cross.png',
+'alt': 'remove from cart',
+'title': 'remove from cart',
+'class': 'clickable'
+}).click(function() {
+$(this).parents('tr').find('.quantity input')
+.val(0).trigger('change')
+.end().hide();
+stripe();
+});
+$('<td></td>').insertAfter($('td:nth-child(2)', this))
+.append($deleteButton);
+});
+$('<td>&nbsp;</td>').insertAfter('#cart tfoot td:nth-child(2)');
+});
+//edit shipping information
+$(document).ready(function() {
+var editShipping = function() {
+$.get('shipping.php', function(data) {
+$('#shipping-name').remove();
+$(data).hide().appendTo('#shipping').slideDown();
+$('#shipping form').submit(saveShipping);
+});
+return false;
+};
+var saveShipping = function() {
+var postData = $('#shipping :input').serialize();
+Chapter 8
+[ 251 ]
+$.post('shipping.php', postData, function(data) {
+$('#shipping form').remove();
+$(data).appendTo('#shipping');
+$('#shipping-name').click(editShipping);
+});
+return false;
+};
+$('#shipping-name').click(editShipping);
+});
+</script>
+
+<form action="checkout.php" method="post">
+<table id="cart" class="oddeven">
+<thead>
+<tr>
+<th class="item">Item</th>
+<th class="quantity">Quantity</th>
+<th class="price">Price</th>
+<th class="cost">Total</th>
+</tr>
+</thead>
+<tfoot>
+<tr class="subtotal">
+<td class="item">Subtotal</td>
+<td class="quantity"></td>
+<td class="price"></td>
+<td class="cost">$152.95</td>
+</tr>
+<tr class="tax">
+<td class="item">Tax</td>
+<td class="quantity"></td>
+<td class="price">6%</td>
+<td class="cost">$9.18</td>
+</tr>
+<tr class="shipping">
+<td class="item">Shipping</td>
+<td class="quantity">5</td>
+<td class="price">$2 per item</td>
+<td class="cost">$10.00</td>
+</tr>
+<tr class="total">
+<td class="item">Total</td>
+<td class="quantity"></td>
+<td class="price"></td>
+<td class="cost">$172.13</td>
+</tr>
+<tr class="actions">
+<td></td>
+<td><input type="button" name="recalculate"
+value="Recalculate" id="recalculate" /></td>
+<td></td>
+<td><input type="submit" name="submit"
+value="Place Order" id="submit" /></td>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+<td class="item">Building Telephony Systems With Asterisk</td>
+<td class="quantity"><input type="text" name="quantity-2"
+value="1" id="quantity-2" maxlength="3" /></td>
+<td class="price">$26.99</td>
+<td class="cost">$26.99</td>
+</tr>
+<tr>
+<td class="item">Smarty PHP Template Programming and
+Applications</td>
+<td class="quantity"><input type="text" name="quantity-1"
+value="2" id="quantity-1" maxlength="3" /></td>
+<td class="price">$35.99</td>
+<td class="cost">$71.98</td>
+</tr>
+<tr>
+<td class="item">Creating your MySQL Database: Practical
+Design Tips and Techniques</td>
+<td class="quantity"><input type="text" name="quantity-3"
+value="1" id="quantity-3" maxlength="3" /></td>
+<td class="price">$17.99</td>
+<td class="cost">$17.99</td>
+</tr>
+<tr>
+<td class="item">Drupal: Creating Blogs, Forums, Portals, and
+Community Websites</td>
+<td class="quantity"><input type="text" name="quantity-4"
+value="1" id="quantity-4" maxlength="3" /></td>
+<td class="price">$35.99</td>
+<td class="cost">$35.99</td>
+</tr>
+</tbody>
+</table>
+</form>

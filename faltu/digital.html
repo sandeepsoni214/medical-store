@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Digital Clock Example | WebPelican</title>
+<meta name="keywords" content="digital clock" />
+<meta name="description" content="Example of a digital clock created with JavaScript." />
+<script type="text/javascript">
+function digital_clock()
+{
+var date=new Date()
+var hours=date.getHours()
+var minutes=date.getMinutes()
+var seconds=date.getSeconds()
+/*
+*Calls the addZero function to add a zero infront of minutes or seconds if they are below 10, i.e.
+*to make it look like 12:07:09, not 12:7:9
+*/
+minutes=addZero(minutes)
+seconds=addZero(seconds)
+/*
+*Puts hours in the element with the hours id,
+*minutes in the element with the minutes id,
+*and seconds in the element with the seconds id
+*/
+document.getElementById('hours')
+.innerHTML = hours
+document.getElementById('minutes')
+.innerHTML = minutes
+document.getElementById('seconds')
+.innerHTML = seconds
+/*
+*Runs every half second
+*/
+setTimeout('digital_clock()', 500)
+}
+/*
+Adds a zero infront of minutes or seconds
+*/
+function addZero(min_or_sec)
+{
+if (min_or_sec < 10)
+{min_or_sec="0" + min_or_sec}
+return min_or_sec
+}
+</script>
+<style type="text/css">
+
+body,
+html {
+background:#eee url(/resources/images/bg.gif);background-repeat: repeat-x;
+}
+body {
+padding:0 15px 15px;margin-top:15px;
+color:#222;
+}
+
+#digital-clock {
+border:1px solid #fff;
+width:7em;
+}
+#digital-clock ul {
+margin:0;
+padding:0.1em;
+background:#003366;
+color:#FFF;
+list-style-type:none;
+text-align:center;
+}
+#digital-clock li {
+display:inline;
+padding:0;
+margin:0;
+}
+
+</style>
+</head>
+<body onload="digital_clock()">
+<h1>Digital Clock</h1>
+<div id="wrap">
+<div id="digital-clock">
+<ul>
+<li id="hours"></li>
+<li> :</li>
+<li id="minutes"></li>
+<li> :</li>
+<li id="seconds"></li>
+</ul>
+</div>
+</div>
+</body>
+</html>

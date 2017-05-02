@@ -1,0 +1,94 @@
+.logoright li{
+float:left;
+margin:-top:2px;
+}
+#container{
+width:1200px;
+min-width:1000px;
+
+}
+#container #left{
+margin-top:20px;
+border:1px groove #e1e1e1;
+
+float:left;
+width:300px;
+
+padding:3px;
+height:600px;
+border-radius:3px;
+	box-shadow: 0px 0px 2px 0px #000 ;
+}
+#container #left h1{
+text-align:left;
+background:#ff6600;
+color:white;
+font-family:Arial, Helvetica, sans-serif;
+font-size:22px;
+padding-left:5px;
+padding:5px;
+width:95%;
+float:left;
+heght:50px;
+}
+#container .links{
+width:280px;
+}
+#container .links li{
+font-family:Arial, Helvetica, sans-serif;
+line-height:24px;
+list-style:none;
+margin:2px;
+text-align:left;
+padding:8px;
+border:1px groove f5f5f5;	
+/*border:1px groove #ff5500;*/
+z-index:14;
+
+	-webkit-box-shadow: 0px 0px 4px #d5d5d5 inset;
+	-moz-box-shadow: 0px 0px 4px #d5d5d5 inset;
+	box-shadow: 0px 0px 4px #d5d5d5 inset;
+}
+#container #right{
+margin-top:20px;
+border:1px groove c0c0c0;
+float:right;
+max-width:885px;
+min-width:600px;
+	box-shadow: 0px 0px 2px 0px #000 ;
+	border-radius:3px;
+}
+.content{
+padding:5px;
+
+}
+.content h2{
+text-align:left;
+color:#ff3300;
+font-family:Arial, Helvetica, sans-serif;
+line-height:24px;
+
+}
+.content p{
+color:#333;
+text-align:justify;
+line-height:24px;
+}
+.contentul li{
+list-style:none;
+padding-left:15px;
+color:#111;
+text-align:justify;
+line-height:24px;
+margin-top:5px;
+}
+#footertop{
+
+max-width:100%;
+ background:#ff4400;
+ min-width:1200px;
+ height:250px;
+}
+#footer{
+
+}
